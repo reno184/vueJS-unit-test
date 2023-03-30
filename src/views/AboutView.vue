@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="about">
     <h3>Let us test your arithmetic.</h3>
     <p>What is the sum of the two numbers?</p>
-    <div class="inline">
+    <div>
       <p>{{ x1 }} + {{ x2 }} =</p> <input v-model="guess"> <button v-on:click="check">Check Answer</button>
     </div>
     <div>

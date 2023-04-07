@@ -1,5 +1,8 @@
 # project setup
 
+### npm
+use [npm jest-fetch-mock](https://www.npmjs.com/package/jest-fetch-mock)
+
 ## test components features
 
 ###  About View
@@ -29,9 +32,15 @@ Test two exported function into utilities files, with [jest snapshot](https://je
 ## todo
  - read jest snapshot documentation, seem to be very interesting to compare (html, data, whole component, whole page) with cached result
  - finish to read and understand this [github repo](https://github.com/dekadentno/vue-unit-testing-cheat-sheet)
- - get on eye on [github repo] (https://github.com/AmpleOrganics/vue-test-utils-helpers?utm_source=pocket_reader)
+ - get on eye on [github repo](https://github.com/AmpleOrganics/vue-test-utils-helpers?utm_source=pocket_reader)
  - regarder la video grafikart
-
+ - lire la 3 parties de https://reno184-wiki.blogspot.com/2021/10/vuemastery-real-word-testing.html?zx=8721610398e46d69 la porte mock vuex
+ - voir https://www.npmjs.com/package/jest-fetch-mock
+ - https://benjaminjohnson.me/mocking-fetch
+ - https://medium.com/fernandodof/how-to-mock-fetch-calls-with-jest-a666ae1e7752
+ - https://github.com/sapegin/jest-cheat-sheet#mock-functions-1
+ - https://webdevetc.com/blog/vue-test-utils-advanced-features?__s=xxxxxxx
+ - https://github.com/dekadentno/vue-unit-testing-cheat-sheet
 
 ### Compiles and hot-reloads for development
 ```

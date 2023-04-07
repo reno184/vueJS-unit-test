@@ -1,0 +1,9 @@
+{
+  "authSetting": {
+    "clientId": "fbdf4f2b-41b5-432f-bfb7-44da6d2518e1",
+    "authority": "https://login.microsoftonline.com/2b1fd696-58e8-4909-a894-ba364b05e304",
+    "scopes": [
+      "api://79477964-3496-4609-81a8-e780df9a87db"
+    ]
+  }
+}

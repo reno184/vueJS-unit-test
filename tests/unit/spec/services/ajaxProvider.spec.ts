@@ -3,7 +3,7 @@
     const ajaxProviderMock = {
       list: jest.fn().mockReturnValue(4),
       find: jest.fn().mockReturnValue(4),
-      post: jest.fn().mockReturnValue(4),
+      posts: jest.fn().mockReturnValue(4),
       put: jest.fn().mockReturnValue(4),
       delete: jest.fn().mockReturnValue(4)
     }

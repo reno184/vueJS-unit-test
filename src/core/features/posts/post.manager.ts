@@ -1,4 +1,4 @@
-import { PostModel } from '@/core/features/post/postModel'
+import { PostModel } from '@/core/features/posts/post.model'
 import { IAjaxProvider } from '@/core/services/ajaxProvider'
 
 export interface IPostManager {

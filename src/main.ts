@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import { IPostManager, postManager } from '@/core/features/post/post.manager'
+import { IPostManager, postManager } from '@/core/features/posts/post.manager'
 import { AjaxProvider, IAjaxProvider } from '@/core/services/ajaxProvider'
-import { IPostStore, postStore } from '@/core/features/post/post.store'
+import { IPostStore, postStore } from '@/core/features/posts/post.store'
 import { globalStore, IGlobalStore } from '@/core/services/global.store'
 
 const _globalStore: IGlobalStore = globalStore()

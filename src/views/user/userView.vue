@@ -6,7 +6,7 @@
 
 import { defineComponent } from 'vue'
 import postView from '@/views/user/postView.vue'
-import { IPostStore } from '@/core/features/post/post.store'
+import { IPostStore } from '@/core/features/posts/post.store'
 
 export default defineComponent({
   inject: ['PostStore'],

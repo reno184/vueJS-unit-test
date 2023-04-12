@@ -6,7 +6,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { PostModel } from '@/core/features/post/postModel'
+import { PostModel } from '@/core/features/posts/post.model'
 
 export default defineComponent({
   props: {

@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
-import { PostModel } from '@/core/features/post/postModel'
-import { IPostManager } from '@/core/features/post/post.manager'
+import { PostModel } from '@/core/features/posts/post.model'
+import { IPostManager } from '@/core/features/posts/post.manager'
 
 export interface IPostStore {
   action: {

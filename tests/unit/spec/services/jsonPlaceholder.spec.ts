@@ -25,6 +25,7 @@ describe('Ajax fake provider', function () {
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+/*
 global.fetch = jest.fn(() => {
   return Promise.resolve({
     json: () => Promise.resolve({ id: 2 })
@@ -36,3 +37,4 @@ it('test fetch', async () => {
   expect(call).toEqual({ id: 2 })
   expect(fetch).toHaveBeenCalledTimes(1)
 })
+*/

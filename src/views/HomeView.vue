@@ -1,5 +1,5 @@
 <template>
-  <div><button @click="onClick()">retrieve</button></div>
+<div>home</div>
 </template>
 
 <script lang="ts">
@@ -7,7 +7,7 @@ import { defineComponent } from 'vue'
 import { getPostId } from '@/core/services/JsonPlaceholder'
 
 export default defineComponent({
-  components: {},
+
   data () {
     return { firstName: '' }
   },

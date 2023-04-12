@@ -1,17 +1,11 @@
-export interface api {
-  get : {
+export interface postApiGet {
     userId : number
     id : number
     title : string
     body : string
-  },
-  body : {
-    put : {},
-    post : {}
-  }
 }
 
-export interface post {
+export interface PostModel {
   userId : number
   id : number
   title : string

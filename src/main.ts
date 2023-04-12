@@ -1,10 +1,17 @@
-import { createApp, reactive } from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import { IPostManager, postManager } from '@/core/features/post/post.manager'
+import { AjaxProvider, IAjaxProvider } from '@/core/services/ajaxProvider'
+import { IPostStore, postStore } from '@/core/features/post/post.store'
+import { globalStore, IGlobalStore } from '@/core/services/global.store'
 
-export interface GStoreModel {
-  blockers : number
-}
-export const GlobalStore = reactive({ blockers: 0 } as GStoreModel)
+const _globalStore: IGlobalStore = globalStore()
+const _ajaxProvider: IAjaxProvider = AjaxProvider(_globalStore)
+const _postManager: IPostManager = postManager(_ajaxProvider)
+const _postStore: IPostStore = postStore(_postManager)
 
-createApp(App).use(router).provide('GlobalStore', GlobalStore).mount('#app')
+createApp(App).use(router)
+  .provide('GlobalStore', _globalStore)
+  .provide('PostStore', _postStore)
+  .mount('#app')

@@ -1,29 +1,28 @@
 <template>
-  <post-view :items="statePost.list" @delete="onDelete(id)"></post-view>
+  <strong>{{user.name}}</strong>
+  <ul>
+    <li v-for="item in posts" :key="item.id" style="display: flex; border-bottom: solid 1px #aaa;line-height: 2rem;">
+      <span style="flex: 1" >{{ item.title }}</span><a href="#" title="delete" @click.prevent="$emit('delete', item.id)">delete</a>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
 
-import { defineComponent } from 'vue'
-import postView from '@/views/user/postView.vue'
-import { IPostStore } from '@/core/features/posts/post.store'
+import { defineComponent, PropType } from 'vue'
+import { PostModel } from '@/core/features/posts/post.model'
+import { UserModel } from '@/core/features/users/user.model'
 
 export default defineComponent({
   inject: ['PostStore'],
-  components: {
-    postView
-  },
-  computed: {
-    statePost () {
-      return (this.PostStore as IPostStore).state
-    }
-  },
-  created () {
-    (this.PostStore as IPostStore).action.fetch()
-  },
-  methods: {
-    onDelete (id: string) {
-      (this.PostStore as IPostStore).action.delete(parseInt(id))
+  props: {
+    user: {
+      type: Object as PropType<UserModel>,
+      required: true
+    },
+    posts: {
+      type: Object as PropType<PostModel[]>,
+      required: true
     }
   }
 })

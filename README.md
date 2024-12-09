@@ -1,9 +1,37 @@
 # project setup
+## Modules et providers
+***
+- **store** est une classe, elle n'utilise pas la dépendance Vuex
+  1. user store
+  2. todo store
+- **ajaxProvider** est aussi une classe, elle n'utilise pas la dépendance Axios
+## Pages & features du site
+***
+### Page Todos list
+> Page avec une liste de todos
+- Fetch vers typicode.com
+- Action **delete** du store uniquement
+- Modal add todo affiche texte
+### Page user list
+> Page avec une liste de todos
+- Fetch vers typicode.com
+- Action **delete** du store uniquement
+### Page About
+> Page permettant de tester une fonction matématique
 
-### npm
+## Test part
+***
+### setup Jest
 use [npm jest-fetch-mock](https://www.npmjs.com/package/jest-fetch-mock)
 
+### strategie test *(A reporter dans blogger)*
+- D'après Jessica, seul le rendu est à tester, savoir comment le rendu a été généré importe peu...
+- Il faut toujours pondérer la criticité d'un module à être tester avec la facilité à le faire, * certains test non critique peuvent être fait si ils sont simples à implémenter
+- Les user story sont des tests critiques
+- Les tests unitaires critiques peuvent être remplacé ou complété par des test endToEnd
+
 ## test components features
+
 
 ###  About View
 See Official doc [vue-test-util-wrapper](https://test-utils.vuejs.org/api/#trigger)
@@ -35,32 +63,13 @@ Test two exported function into utilities files, with [jest snapshot](https://je
  - get on eye on [github repo](https://github.com/AmpleOrganics/vue-test-utils-helpers?utm_source=pocket_reader)
  - regarder la video grafikart
  - lire la 3 parties de https://reno184-wiki.blogspot.com/2021/10/vuemastery-real-word-testing.html?zx=8721610398e46d69 la porte mock vuex
- - voir https://www.npmjs.com/package/jest-fetch-mock
- - https://benjaminjohnson.me/mocking-fetch
  - https://medium.com/fernandodof/how-to-mock-fetch-calls-with-jest-a666ae1e7752
  - https://github.com/sapegin/jest-cheat-sheet#mock-functions-1
  - https://webdevetc.com/blog/vue-test-utils-advanced-features?__s=xxxxxxx
  - https://github.com/dekadentno/vue-unit-testing-cheat-sheet
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+-----
+voir pour faire les tests de list
+savoir mocker, before-each, les error https://medium.com/fernandodof/how-to-mock-fetch-calls-with-jest-a666ae1e7752
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

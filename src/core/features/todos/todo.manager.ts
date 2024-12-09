@@ -13,7 +13,6 @@ export const todoManager = function (ajaxProvider : IAjaxProvider) {
       return ajaxProvider.list<TodoModel[]>('todos')
     },
     delete: async function (id:number): Promise<void> {
-      console.log(id)
       return ajaxProvider.delete('todos', id)
     }
   }

@@ -1,5 +1,6 @@
 <template>
 <div>home</div>
+  <router-link to="to">sdssd</router-link>
 </template>
 
 <script lang="ts">
@@ -7,7 +8,7 @@ import { defineComponent } from 'vue'
 import { getPostId } from '@/core/services/JsonPlaceholder'
 
 export default defineComponent({
-
+  name: 'HomeView',
   data () {
     return { firstName: '' }
   },

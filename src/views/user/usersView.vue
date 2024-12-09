@@ -1,46 +1,31 @@
 <template>
-  <div v-if="loading">loading...</div>
+  <div v-if="userStore.state.loading">loading...</div>
   <template v-else>
-    <div v-for="user in stateUser.list" :key="user.id" style="width: 50%">
-      <user-view :user="user" :posts="userPost(statePost.list, user.id)"  @delete="id => onDelete(id)"></user-view>
-    </div>
+    <div v-if="userStore.state.list.length===0">empty...</div>
+    <ul v-else style="width: 50%">
+      <li v-for="(user, index) in userStore.state.list" :key="index" style="display: flex; border-bottom: solid 1px #aaa;line-height: 2rem;">
+        <span style="flex: 1" >{{ user.name }}</span>
+        <router-link :to="{ name : 'userPost', params : {userId : user.id}}" style="margin-right: 5px" >posts</router-link>
+      </li>
+    </ul>
   </template>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
 import UserView from '@/views/user/userView.vue'
 import { IPostStore } from '@/core/features/posts/post.store'
 import { PostModel } from '@/core/features/posts/post.model'
 import { IUserStore } from '@/core/features/users/user.store'
 
 export default defineComponent({
-  inject: ['UserStore', 'PostStore'],
-  components: {
-    UserView
-  },
-  computed: {
-    stateUser () {
-      return (this.UserStore as IUserStore).state
-    },
-    statePost () {
-      return (this.PostStore as IPostStore).state
-    },
-    loading () {
-      return this.statePost.loading && this.stateUser.loading
-    }
+  name: 'usersView',
+  setup () {
+    const userStore = inject('UserStore') as IUserStore
+    return { userStore }
   },
   created () {
-    (this.UserStore as IUserStore).action.fetch();
-    (this.PostStore as IPostStore).action.fetch()
-  },
-  methods: {
-    userPost (posts : PostModel[], id : number) {
-      return posts.filter(post => post.userId === id)
-    },
-    onDelete (id: string) {
-      (this.PostStore as IPostStore).action.delete(parseInt(id))
-    }
+    this.userStore.action.fetch()
   }
 })
 </script>

@@ -1,10 +1,34 @@
 import comp from '@/views/AboutView.vue'
 import { mount, shallowMount } from '@vue/test-utils'
+import VueRouter from 'vue-router'
 
 // https://www.digitalocean.com/community/tutorials/vuejs-vue-testing
 describe('AboutView component', () => {
-  const wrapper = mount(comp)
+  const mockRoute = {
+    params: {
+      id: 1
+    }
+  }
+  const mockRouter = {
+    push: jest.fn()
+  }
 
+  const wrapper = mount(comp, {
+    shallow: true,
+    stubs: ['router-link', 'router-view'],
+    global: {
+      mocks: {
+        $route: mockRoute,
+        $router: mockRouter
+      }
+    }
+  })
+  test('allows authenticated user to edit a post', async () => {
+    await wrapper.find('button').trigger('click')
+
+    expect(mockRouter.push).toHaveBeenCalledTimes(1)
+    expect(mockRouter.push).toHaveBeenCalledWith('/posts/1/edit')
+  })
   test('sanitize test', () => {
     expect(wrapper.exists()).toBe(true)
   })

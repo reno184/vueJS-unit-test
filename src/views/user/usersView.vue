@@ -1,13 +1,18 @@
 <template>
-  <div v-if="userStore.state.loading">loading...</div>
+  <div v-if="userStore.state.error !==''">
+    Oups an error..
+  </div>
   <template v-else>
-    <div v-if="userStore.state.list.length===0">empty...</div>
-    <ul v-else style="width: 50%">
-      <li v-for="(user, index) in userStore.state.list" :key="index" style="display: flex; border-bottom: solid 1px #aaa;line-height: 2rem;">
-        <span style="flex: 1" >{{ user.name }}</span>
-        <router-link :to="{ name : 'userPost', params : {userId : user.id}}" style="margin-right: 5px" >posts</router-link>
-      </li>
-    </ul>
+    <div v-if="userStore.state.loading">loading...</div>
+    <template v-else>
+      <div v-if="userStore.state.list.length===0">empty...</div>
+      <ul v-else style="width: 50%">
+        <li v-for="(user, index) in userStore.state.list" :key="index" style="display: flex; border-bottom: solid 1px #aaa;line-height: 2rem;">
+          <span style="flex: 1" >{{ user.name }}</span>
+          <router-link :to="{ name : 'userPost', params : {userId : user.id}}" style="margin-right: 5px" >posts</router-link>
+        </li>
+      </ul>
+    </template>
   </template>
 </template>
 

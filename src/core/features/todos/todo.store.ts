@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 import { TodoModel } from '@/core/features/todos/todo.model'
-import { ITodoManager } from '@/core/features/todos/todo.manager'
+import { ITodoManager } from '@/core/features/todos/createTodoManager'
 
 interface ITodoState {
   list: TodoModel[]

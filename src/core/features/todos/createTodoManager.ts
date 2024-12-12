@@ -1,19 +1,19 @@
 
-import { IAjaxProvider } from '@/core/services/ajaxProvider'
 import { TodoModel } from '@/core/features/todos/todo.model'
+import { IAxiosProvider } from '@/core/provider/axiosProvider'
 
 export interface ITodoManager {
   list: () => Promise<TodoModel[]>
   delete: (id:number) => Promise<void>
 }
 
-export const todoManager = function (ajaxProvider : IAjaxProvider) {
+export const CreateTodoManager = function (axiosProvider : IAxiosProvider) {
   return {
     list: async function (): Promise<TodoModel[]> {
-      return ajaxProvider.list<TodoModel[]>('todos')
+      return axiosProvider.fetch<TodoModel[]>('todos')
     },
     delete: async function (id:number): Promise<void> {
-      return ajaxProvider.delete('todos', id)
+      return axiosProvider.delete('todos', id)
     }
   }
 }

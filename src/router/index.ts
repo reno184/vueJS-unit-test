@@ -4,12 +4,13 @@ import aboutView from '@/views/AboutView.vue'
 import usersView from '@/views/user/usersView.vue'
 import todoListView from '@/views/todo/todoListView.vue'
 import userPost from '@/views/post/userPost.vue'
-
+import mailPage from '@/views/mail/mailPage.vue'
 export const routes: Array<RouteRecordRaw> = [
   { path: '/', name: 'home', component: HomeView },
   { path: '/users', name: 'users', component: usersView },
   { path: '/todos', name: 'todos', component: todoListView },
   { path: '/about', name: 'about', component: aboutView },
+  { path: '/mail', name: 'mail', component: mailPage },
   { path: '/posts/:userId', name: 'userPost', component: userPost }
 ]
 

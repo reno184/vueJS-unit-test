@@ -1,9 +1,10 @@
 <template>
   <nav>
-    <router-link aria-label="home"  to="/" active-class="active" >Home</router-link> |
-    <router-link aria-label="userList" to="/users" active-class="active">User</router-link> |
-    <router-link aria-label="todoList" to="/todos" active-class="active">Todo list</router-link>|
-    <router-link aria-label="about" to="/about" active-class="active">About</router-link>
+    <router-link aria-label="home"  to="/"  >Home</router-link> |
+    <router-link aria-label="userList" to="/users" >User</router-link> |
+    <router-link aria-label="todoList" to="/todos" >Todo list</router-link>|
+    <router-link aria-label="mail" to="/mail" >Mail inbox</router-link>|
+    <router-link aria-label="about" to="/about" >About</router-link>
   </nav>
   <router-view/>
 </template>

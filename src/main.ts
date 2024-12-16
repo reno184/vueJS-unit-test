@@ -10,6 +10,7 @@ import { ITodoManager, CreateTodoManager } from '@/core/features/todos/createTod
 import { ITodoStore, todoStore } from '@/core/features/todos/todo.store'
 import { IUserStore, userStore } from '@/core/features/users/user.store'
 import { CreateAxiosProvider, IAxiosProvider } from '@/core/provider/axiosProvider'
+import { CreateEmailManager, IEmailManager } from '@/manager/EmailManager'
 
 const _globalStore: IGlobalStore = globalStore()
 const _ajaxProvider: IAjaxProvider = AjaxProvider(_globalStore)
@@ -17,12 +18,14 @@ const _axiosProvider: IAxiosProvider = CreateAxiosProvider()
 const _postManager: IPostManager = postManager(_ajaxProvider)
 const _userManager: IUserManager = userManager(_ajaxProvider)
 const _todoManager: ITodoManager = CreateTodoManager(_axiosProvider)
+const _emailManager: IEmailManager = CreateEmailManager()
 
 const _postStore: IPostStore = postStore(_postManager)
 const _userStore: IUserStore = userStore(_userManager)
 const _todoStore: ITodoStore = todoStore(_todoManager)
 
 createApp(App).use(router)
+  .provide('EmailManager', _emailManager)
   .provide('GlobalStore', _globalStore)
   .provide('PostStore', _postStore)
   .provide('UserStore', _userStore)

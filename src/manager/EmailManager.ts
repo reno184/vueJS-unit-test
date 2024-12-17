@@ -10,7 +10,7 @@ export const CreateEmailManager = function () {
       from: '',
       read: false,
       archived: false,
-      sentAt: '',
+      sentAt: '2024-02-02',
       subject: ''
     } as EmailModel
   }

@@ -19,9 +19,12 @@
 ### Page About
 > Page permettant de tester une fonction matématique
 
+# gmail module
 ## Source
 https://github.com/Code-Pop/build-gmail-clone-with-vue-3/blob/master/src/components/MailTable.vue
-
+## Notes
+- le put d'axios va réellement écrire dans db.json
+- 
 
 
 ### setup Jest

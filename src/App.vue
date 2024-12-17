@@ -47,4 +47,86 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+/* Global Styles */
+
+button {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 3px;
+  margin: 5px 10px 5px 0px;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: auto;
+}
+
+button.selected {
+  cursor: auto;
+  color: #42b983;
+  border-color: #42b983;
+  border-width: 2px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+input[type='checkbox'] {
+  -webkit-appearance:none;
+  cursor: pointer;
+  width:24px;
+  height:24px;
+  background:white;
+  border-radius: 2px;
+  border: 1px solid #555;
+  position: relative;
+  vertical-align: middle;
+  padding: 10px;
+}
+
+input[type='checkbox'].partial-check {
+  background: #ABC;
+}
+
+input[type='checkbox']:checked {
+  background: #679;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+/* Modal */
+
+.modal, .overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.overlay {
+  opacity: 0.5;
+  background-color: black;
+}
+.modal-card {
+  position: relative;
+  max-width: 80%;
+  margin: auto;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: white;
+  min-height: 500px;
+  z-index: 10;
+  opacity: 1;
+}
+
+/* Email Modal */
+
+.email-display {
+  text-align: left;
+}
+
 </style>

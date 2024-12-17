@@ -1,53 +1,52 @@
 import { reactive } from 'vue'
-import axios from 'axios'
 import { EmailModel } from '@/model/emailModel'
 
-const emailSet = new Set<EmailModel>()
+const emailSet = new Set<number>()
 
 export const useEmailSelection = function () {
-  const emails: Set<EmailModel> = reactive(emailSet)
+  const _emailSelected: Set<number> = reactive(emailSet)
 
   // stateFull function...loop over email and trigger callbackParams
-  const _forSelected = (fn:(e:EmailModel)=>void) => {
-    emails.forEach(async email => {
+  /*  const _forSelected = (fn:(e:EmailModel)=>void) => {
+    _emailSelected.forEach(async email => {
       fn(email)
       await axios.put(`http://localhost:3000/emails/${email.id}`, email)
     })
-  }
+  } */
 
   // stateFull function...
   const clear = () => {
-    emails.clear()
+    _emailSelected.clear()
   }
 
   // stateFull function...
   const toggle = (email: EmailModel) => {
-    if (emails.has(email)) {
-      emails.delete(email)
+    if (_emailSelected.has(email.id)) {
+      _emailSelected.delete(email.id)
     } else {
-      emails.add(email)
+      _emailSelected.add(email.id)
     }
   }
   // stateFull function...
   const addMultiple = (newEmails:EmailModel[]) => {
     newEmails.forEach(email => {
-      emails.add(email)
+      _emailSelected.add(email.id)
     })
   }
-  const markRead = () => { _forSelected(e => { e.read = true }) }
+  /* const markRead = () => { _forSelected(e => { e.read = true }) }
   const markUnread = () => { _forSelected(e => { e.read = false }) }
   const archive = () => { _forSelected(e => { e.archived = true; clear() }) }
-  const moveToInbox = () => { _forSelected(e => { e.archived = false; clear() }) }
+  const moveToInbox = () => { _forSelected(e => { e.archived = false; clear() }) } */
 
   return {
-    emails,
+    emails: _emailSelected,
     clear,
     toggle,
-    addMultiple,
-    markRead,
+    addMultiple
+    /*    markRead,
     markUnread,
     archive,
-    moveToInbox
+    moveToInbox */
   }
 }
 

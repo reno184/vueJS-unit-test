@@ -1,3 +1,4 @@
+<!-- https://github.com/Code-Pop/build-gmail-clone-with-vue-3/blob/master/src/components/ModalView.vue  -->
 <template>
   <div class="modal">
     <div class="overlay" @click="closeModal"></div>

@@ -1,22 +1,28 @@
 <template>
   <table class="mail-table">
     <tbody>
-    <tr v-for="email in emails" :key="email.id" :class="[email.read ? 'read': '', 'clickable']" @click="openEmail(email)">
+    <tr v-for="email in emails" :key="email.id" :class="[email.read ? 'read': '', 'clickable']" >
       <td>
-        <input type="checkbox" :checked="emailSelection.emails.has(email)" @click="emailSelection.toggle(email)" />
+        <input type="checkbox" :checked="emailSelection.emails.has( email.id)" @click="emailSelection.toggle(email)" />
       </td>
       <td>{{email.from}}</td>
       <td>
-        <p><strong>{{email.subject}}</strong> - {{email.body}}</p>
+        <p>
+          <span  style="display:inline-block; margin-right:10px;color: orange">
+          <template v-if="email.favorite">&#9733;</template>
+          <template v-else>&#9734;</template>
+          </span>
+          {{email.subject}} - {{email.body}}</p>
       </td>
       <td class="date">{{format(new Date(email.sentAt), 'MMM do yyyy')}}</td>
-      <td><button @click="archiveEmail(email)">Archive</button></td>
+      <td><button @click="toggleRead(email)">Read</button></td>
+      <td><button @click="updateEmailFn(email, { toggleArchive : !email.archived})"><template v-if="email.archived">Un</template>Archive</button></td>
     </tr>
     </tbody>
   </table>
 
-  <ModalView v-if="openedEmail" :closeModal="() => { this.openedEmail = emailManager.init; }">
-    <MailView :email="openedEmail" :changeEmail="x=>changeEmail(openedEmail,x)" />
+  <ModalView v-if="modal" :closeModal="() => { this.modal = false }">
+    <MailView :emails="emails" :updateEmailFn="updateEmailFn" :closeModal="() => { this.modal = false }" />
   </ModalView>
 </template>
 
@@ -25,16 +31,21 @@ import { format } from 'date-fns'
 import MailView from '@/components/MailView.vue'
 import ModalView from '@/components/ModalView.vue'
 import { useEmailSelection } from '@/composition/useEmailSelection'
-import axios from 'axios'
+
 import { defineComponent, inject, PropType } from 'vue'
 import { ChangeEmailArgument, EmailModel } from '@/model/emailModel'
 import { IEmailManager } from '@/manager/EmailManager'
+import useKeydown from '@/composition/useKeydown'
 
 export default defineComponent({
   name: 'MailTable',
   props: {
     emails: {
       type: Array as PropType<EmailModel[]>,
+      required: true
+    },
+    updateEmailFn: {
+      type: Function as PropType<(email:EmailModel, args : ChangeEmailArgument)=>void>,
       required: true
     }
   },
@@ -51,32 +62,12 @@ export default defineComponent({
     }
   },
   data () {
-    return { openedEmail: {} as EmailModel }
-  },
-  created () {
-    this.openedEmail = this.emailManager.init
+    return { modal: false, emailClone: [] as EmailModel[] }
   },
   methods: {
-    async openEmail (email:EmailModel) {
-      this.openedEmail = email
-      if (email) {
-        email.read = true
-        await axios.put(`http://localhost:3000/emails/${email.id}`, email)
-      }
-    },
-    async archiveEmail (email:EmailModel) {
-      email.archived = true
-      await axios.put(`http://localhost:3000/emails/${email.id}`, email)
-    },
-    changeEmail (email:EmailModel, args : ChangeEmailArgument):void {
-      if (args.toggleArchive) { email.archived = !email.archived }
-      if (args.toggleRead) { email.read = !email.read }
-      if (args.save) { axios.put(`http://localhost:3000/emails/${email.id}`, email) }
-      if (args.closeModal) { this.openedEmail = this.emailManager.init }
-
-      if (args.indexChange) {
-        this.openEmail(this.emails[args.indexChange])
-      }
+    toggleRead: function (email : EmailModel) {
+      this.modal = true
+      this.updateEmailFn(email, { toggleRead: true })
     }
   }
 
@@ -84,5 +75,36 @@ export default defineComponent({
 </script>
 
 <style scoped>
+/* Mail Table */
+
+.mail-table {
+  max-width: 1000px;
+  margin: auto;
+  border-collapse: collapse;
+}
+.mail-table tr.read {
+  font-weight: normal;
+}
+.mail-table tr {
+  height: 40px;
+  font-weight: bold;
+}
+.mail-table td {
+  border-bottom: 1px solid black;
+  padding: 5px;
+  text-align: left;
+}
+.mail-table tr:first-of-type td {
+  border-top: 1px solid black;
+}
+.mail-table td p {
+  max-height: 1.2em;
+  overflow-y: hidden;
+  margin: 0;
+}
+
+.mail-table td.date {
+  width: 120px;
+}
 
 </style>

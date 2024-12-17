@@ -25,7 +25,7 @@ const _userStore: IUserStore = userStore(_userManager)
 const _todoStore: ITodoStore = todoStore(_todoManager)
 
 createApp(App).use(router)
-  .provide('EmailManager', _emailManager)
+  .provide('emailManager', _emailManager)
   .provide('GlobalStore', _globalStore)
   .provide('PostStore', _postStore)
   .provide('UserStore', _userStore)

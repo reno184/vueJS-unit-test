@@ -1,6 +1,7 @@
 export interface EmailModel {
   id: number
   read : boolean
+  favorite: boolean
   archived: boolean
   sentAt: string
   body: string
@@ -12,5 +13,5 @@ export interface ChangeEmailArgument {
   toggleArchive?: boolean
   toggleRead?: boolean
   save?: boolean
-  closeModal?: boolean
+  toggleFavorite?: boolean
 }

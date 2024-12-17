@@ -7,7 +7,6 @@ export const useKeydown = function (keyCombos:{key : string, fn:() => void}[]) {
       kc.fn()
     }
   }
-
   window.addEventListener('keydown', _onKey)
 
   onBeforeUnmount(() => {

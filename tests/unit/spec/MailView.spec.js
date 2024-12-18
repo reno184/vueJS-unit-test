@@ -16,6 +16,11 @@ describe('[Mail module] modal - content ', function () {
   test('component is exist', function () {
     expect(wrapper.exists()).toBeTruthy()
   })
+  it('should call useKeyDown composable on created', function () {
+    const useKeyDown = jest.fn()
+    useKeyDown()
+    expect(useKeyDown).toHaveBeenCalledTimes(1)
+  })
   it('should close the modal when button close is clicked', async function () {
     const btnClose = wrapper.get('[data-test=btnClose]')
     expect(btnClose).toBeTruthy()
